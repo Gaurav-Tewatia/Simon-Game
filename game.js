@@ -15,7 +15,13 @@ var buttonColor=["red","blue","green","yellow"];
     }
 });
 
-
+$(document).click(function(){
+    if(!started){
+        $("#level-title").text("LEVEL"+level);
+        nextSequence();
+        started=true;
+    }
+})
 function keysound(button){
     switch(button){
         case "g":   userClickedPattern.push("green");
@@ -46,19 +52,14 @@ function keysound(button){
 
 
 $(".btn").click(function(){
-    if(!started){
-        $("#level-title").text("LEVEL"+level);
-        nextSequence();
-        started=true;
-    }
-    else{
+   
         var userChosenColour=$(this).attr("id");
         userClickedPattern.push(userChosenColour);
         playsound(userChosenColour);
         animatePress(userChosenColour);
 
         checkAnswer(userClickedPattern.length-1);
-    }
+    
 });
 
 function checkAnswer(currentLevel){
