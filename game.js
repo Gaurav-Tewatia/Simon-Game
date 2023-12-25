@@ -15,11 +15,12 @@ var buttonColor=["red","blue","green","yellow"];
     }
 });
 
+var initial=false;
 $(document).click(function(){
-    if(!started){
+    if(!initial){
         $("#level-title").text("LEVEL"+level);
         nextSequence();
-        started=true;
+        initial=true;
     }
 })
 function keysound(button){
@@ -88,6 +89,10 @@ function startOver(){
     gamePattern=[];
     level=0;
     started=false;
+    setTimeout(function(){
+        initial=false;
+    },200);
+    
 }
 
 function nextSequence(){
