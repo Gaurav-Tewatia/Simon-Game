@@ -15,6 +15,7 @@ var buttonColor=["red","blue","green","yellow"];
     }
 });
 
+
 function keysound(button){
     switch(button){
         case "g":   userClickedPattern.push("green");
@@ -45,12 +46,19 @@ function keysound(button){
 
 
 $(".btn").click(function(){
-    var userChosenColour=$(this).attr("id");
-    userClickedPattern.push(userChosenColour);
-    playsound(userChosenColour);
-    animatePress(userChosenColour);
+    if(!started){
+        $("#level-title").text("LEVEL"+level);
+        nextSequence();
+        started=true;
+    }
+    else{
+        var userChosenColour=$(this).attr("id");
+        userClickedPattern.push(userChosenColour);
+        playsound(userChosenColour);
+        animatePress(userChosenColour);
 
-    checkAnswer(userClickedPattern.length-1);
+        checkAnswer(userClickedPattern.length-1);
+    }
 });
 
 function checkAnswer(currentLevel){
